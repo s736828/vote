@@ -17,8 +17,9 @@ if ($chk > 0) {
 
 //寫入選項
 $sql_subject_id="select `id` from `topics` where `subject`='{$_POST['subject']}'";
-echo $sql_subject_id;
 $subject_id=$pdo->query($sql_subject_id)->fetchColumn();
+
+echo $sql_subject_id;
 echo $subject_id;
 
 
@@ -29,4 +30,4 @@ foreach($_POST['description'] as $desc){
         $pdo->exec($sql_option);
     }
 }
-// header("location:../backend.php");
+header("location:../backend.php");

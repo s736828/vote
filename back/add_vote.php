@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新增主題</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
 </head>
 
 <body>
@@ -33,12 +34,14 @@
                 <input type="radio" name="type" value="2">複選
             </div>
             <hr>
-            <div class="options">
-            <div>
-                <label for="description">項目:</label>
-                <input type="text" name="description" class="description-input">
-            </div>
 
+            <div class="options">
+                <div>
+                    <label for="description">項目：</label>
+                    <input type="text" name="description[]" class="description-input">
+                    <span onclick="addOption()">+</span>
+                    <span onclick="removeOption(this)">-</span>
+                </div>
             </div>
             <div>
                 <input type="submit" value="新增">
@@ -48,3 +51,20 @@
 </body>
 
 </html>
+<!-- 上面必須先載入，所以jquery寫在最後面 -->
+<script>
+    function addOption() {
+        let opt = `<div>
+                    <label for="description">項目：</label>
+                    <input type="text" name="description[]" class="description-input">
+                    <span onclick="addOption()">+</span>
+                    <span onclick="removeOption(this)">-</span>
+                   </div>`
+        $(".options").append(opt);
+    }
+    function removeOption(el) {
+        let dom=$(el).parent()
+        $(dom).remove();
+    }
+    // remove()消除，append()附加, parent()父母
+</script>

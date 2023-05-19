@@ -1,3 +1,8 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .time-set{
     display: flex;
     width: 70%;
@@ -15,4 +20,39 @@
 main{
     width: 60%;
     margin: auto;
+    /* border: 1px solid black; */
+
+}
+
+.topic-list{
+    list-style-type: none;
+}
+.list-row{
+    display: flex;
+    width: 100%;
+    /* border: 1px solid black; */
+}
+.list-row div{
+    text-align: center;
+}
+
+.list-item-title:nth-child(1),
+.list-item:nth-child(1){
+    width: 30%;
+}
+.list-item-title:nth-child(2),
+.list-item:nth-child(2){
+    width: 5%;
+}
+.list-item-title:nth-child(3),
+.list-item:nth-child(3){
+    width: 30%;
+}
+.list-item-title:nth-child(4),
+.list-item:nth-child(4){
+    width: 10%;
+}
+.list-item-title:nth-child(5),
+.list-item:nth-child(5){
+    width: 10%;
 }
