@@ -16,7 +16,7 @@
         <a href="login.php">登出</a>
     </header>
     <nav>
-        <!-- 用do當參數↓ -->
+        <!-- 可用do當參數去傳與接↓ -->
         <a href="./backend.php?do=add_vote">新增投票</a>
         <a href="./backend.php?do=query_vote">結果查詢</a>
     </nav>

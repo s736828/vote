@@ -19,7 +19,8 @@
     <main>
         <ul>
             <?php
-            $do = (isset($_GET['do'])) ? $_GET['do'] : 'list';
+            // $do = (isset($_GET['do'])) ? $_GET['do'] : 'list';
+            $do=($_GET['do'])??'list';
             $file = "./front/" . $do . ".php";
 
             if (file_exists($file)) {

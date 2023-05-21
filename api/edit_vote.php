@@ -13,7 +13,7 @@ $pdo->exec($sql);
 $options = $pdo->query("select `id` from `options` where `subject_id`='{$_POST['subject_id']}'")
     ->fetchAll(PDO::FETCH_ASSOC);
 //如果選項是存在的，opt_id也是存在的
-// 將資料表中的選項撈出來和表單中的選項id做比對
+//將資料表中的選項撈出來和表單中的選項id做比對.
 if (!empty($options)) {
     if (isset($_POST['opt_id'])) {
         //以迴圈的方式將資料表中的選項id一個一個拿出來做檢查

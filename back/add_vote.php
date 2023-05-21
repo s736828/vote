@@ -8,11 +8,13 @@
     <title>新增主題</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/jquery-3.7.0.min.js"></script>
+    <!-- 載入jquery↑ -->
 </head>
 
 <body>
     <main>
         <h1>新增主題</h1>
+        <!-- ↓submit後連到api -->
         <form action="../api/add_vote.php" method="post">
             <div>
                 <label for="subject">主題說明:</label>
@@ -38,6 +40,7 @@
             <div class="options">
                 <div>
                     <label for="description">項目：</label>
+                    <!-- ↓name後面加[]用陣列傳送 -->
                     <input type="text" name="description[]" class="description-input">
                     <span onclick="addOption()">+</span>
                     <span onclick="removeOption(this)">-</span>
