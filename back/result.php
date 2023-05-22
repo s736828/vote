@@ -11,16 +11,19 @@ $subject = $pdo->query("select * from `topics` where `id`=$id")->fetch(PDO::FETC
         <div class="vote-item">序號</div>
         <div class="vote-item">項目</div>
         <div class="vote-item">票數</div>
+        <div class="vote-item">操作</div>
     </li>
     <?php
     foreach ($options as $idx => $option) {
     ?>
         <li class="vote-option">
-            <div class="vote-item"><?=$idx+1?>. 
-        </div>
+            <div class="vote-item"><?=$idx+1?>. </div>
             <div class="vote-item"><?=$option['description']?></div>
             <div class="vote-item"><?=$option['total']?></div>
-
+            <div class="vote-item">
+                <button>更改票數</button>
+                <button onclick="location.href='./api/del_option.php?id=<?=$option['id']?>'">刪除</button>
+            </div>
         </li>
     <?php
     }
