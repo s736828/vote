@@ -1,5 +1,6 @@
 <?php include_once "../db.php";
 //可以選擇使用編碼來為密碼或資料加密
+//密碼在傳送到api的過程中為加密型態
 // $pw=md5($_POST['pw']);
 // echo $pw;
 
