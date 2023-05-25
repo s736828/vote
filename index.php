@@ -15,6 +15,7 @@
         <a href="index.php">首頁</a>
         <a href="index.php?do=result_list">結果</a>
         <?php
+        // ↓用!none,如果沒有抓到login, 就顯示登入,註冊，有抓到就顯示登出
         if(!isset($_SESSION['login'])){
         ?>
         <a href="index.php?do=login">登入</a>
