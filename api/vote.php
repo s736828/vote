@@ -9,12 +9,12 @@ $subject_type=$pdo->query("select `type` from `topics` where `id`='$subject_id'"
 switch($subject_type){
     case 1://單選
         $pdo->exec("update `options` set `total`=`total`+1 where `id`='$opt'");
-        break; 
+    break; 
     case 2://多選
         foreach($opt as $opt_id){
         $pdo->exec("update `options` set `total`=`total`+1 where `id`='$opt_id'");
         }
-        break;
+    break;
 }
 // 記錄使用者投票狀況
 if(isset($_SESSION['login'])){
@@ -22,7 +22,6 @@ if(isset($_SESSION['login'])){
 }else{
     $mem_id=0;
 }
-
 
 $topic_id=$_POST['subject_id'];
 $vote_time=date("Y-m-d H:i:s");

@@ -1,30 +1,19 @@
-<?php include_once "../db.php";
+<?php
 // 取主題資料表的資料
 $topic = $pdo->query("select * from `topics` where `id`='{$_GET['id']}'")
-    ->fetch(PDO::FETCH_ASSOC);
-echo "<pre>";
-print_r($topic);
-echo "</pre>";
-echo "<br>";
+            ->fetch(PDO::FETCH_ASSOC);
+// echo "<pre>";
+// print_r($topic);
+// echo "</pre>";
+// echo "<br>";
 // 取項目資料表的資料
 $options = $pdo->query("select * from `options` where `subject_id`='{$_GET['id']}'")
-    ->fetchAll(PDO::FETCH_ASSOC);
-echo "<pre>";
-print_r($options);
-echo "</pre>";
+            ->fetchAll(PDO::FETCH_ASSOC);
+// echo "<pre>";
+// print_r($options);
+// echo "</pre>";
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯主題</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/jquery-3.7.0.min.js"></script>
-</head>
-<body>
-<main>
+
 <h1>編輯主題</h1>
 <form action="../api/edit_vote.php" method="post">
     <div>
@@ -45,6 +34,11 @@ echo "</pre>";
         <label for="type">單複選:</label>
         <input type="radio" name="type" value="1" <?=($topic['type'] == 1) ? 'checked' : '';?>>單選&nbsp;&nbsp;
         <input type="radio" name="type" value="2" <?=($topic['type'] == 2) ? 'checked' : '';?>>複選
+    </div>
+    <div>
+        <label for="type">是否公開:</label>
+        <input type="radio" name="login" value="0" <?=($topic['login'] == 0) ? 'checked' : '';?>>是&nbsp;&nbsp;
+        <input type="radio" name="login" value="1" <?=($topic['login'] == 1) ? 'checked' : '';?>>否
     </div>
     <hr>
 

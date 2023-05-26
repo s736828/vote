@@ -8,9 +8,9 @@
     </li>
     <?php
     $sql = "SELECT `topics`.*,sum(`options`.`total`) as 總計 
-FROM `topics`,`options` 
-WHERE `topics`.`id`=`options`.`subject_id` 
-GROUP BY `topics`.`id`;";
+            FROM `topics`,`options` 
+            WHERE `topics`.`id`=`options`.`subject_id` 
+            GROUP BY `topics`.`id`;";
 
     $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     foreach ($rows as $row) {

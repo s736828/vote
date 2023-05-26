@@ -18,6 +18,7 @@
     }
     ?>
     <!--
+    上面是php，下面是js，比較語法差異
     php的foreach的key值在前面value為後面 
     但javascript的foreach的value值是在前面，key值在後面
     -->
