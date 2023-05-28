@@ -17,9 +17,9 @@ if ($chk) {
         unset($_SESSION['position']);
         exit();
     }
-    header("location:../index.php");
-} else {
-    header("location:../index.php?do=login&error=1");
+//     header("location:../index.php");
+// } else {
+//     header("location:../index.php?do=login&error=1");
 }
 
 echo $sql . "<br>";

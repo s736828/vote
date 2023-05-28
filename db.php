@@ -2,7 +2,7 @@
 $dsn = "mysql:host=localhost;charset=utf8;dbname=vote";
 $pdo = new PDO($dsn, 'root', '');
 
-// 格林時間差8小時，調整時區↓
+// 日期默認時區設置，格林時間差8小時,調整時區↓
 date_default_timezone_set("Asia/Taipei");
 
 session_start();
