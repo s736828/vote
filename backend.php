@@ -31,18 +31,18 @@ if(isset($_GET['do'])){
         <?php
         switch($_SESSION['pr']){
             case "super":
-                
+
                 break;
             case "admin":
                 echo "<nav>";
-                echo "<a href='./backend.php?do=add_vote'>新增投票</a>";
-                echo "<a href='./backend.php?do=query_vote'>投票明細管理</a>";
+                echo "  <a href='./backend.php?do=add_vote'>新增投票</a>";
+                echo "  <a href='./backend.php?do=query_vote'>投票明細管理</a>";
                 echo "</nav>";
                 break;
             case "member":
                 echo "<nav>";
-                echo "<a href='./backend.php?do=edit_self'>修改個人資料</a>";
-                echo "<a href='./backend.php?do=vote_history'>投票記錄查詢</a>";
+                echo "  <a href='./backend.php?do=edit_self'>修改個人資料</a>";
+                echo "  <a href='./backend.php?do=vote_history'>投票記錄查詢</a>";
                 echo "</nav>";
                 break;
         }
@@ -59,9 +59,9 @@ if(isset($_GET['do'])){
         // }
         // 三元運算式
         // $do=$_GET['do']??'topic_list';
-    
+        
         $file = "./back/" . $do . ".php";
-
+        
         if (file_exists($file)) {
             include $file;
         } else {

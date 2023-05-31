@@ -15,7 +15,7 @@
     <main>
         <h1>新增主題</h1>
         <!-- ↓submit後連到api -->
-        <form action="./api/add_vote.php" method="post">
+        <form action="./api/add_vote.php" method="post" enctype="multipart/form-data">
             <div>
                 <label for="subject">主題說明:</label>
                 <input type="text" name="subject" id="subject" class="subject-input">
@@ -39,6 +39,10 @@
                 <label for="type">是否公開:</label>
                 <input type="radio" name="login" value="0">是&nbsp;&nbsp;
                 <input type="radio" name="login" value="1">否
+            </div>
+            <div>
+                <label for="img">上傳圖檔：</label>
+                <input type="file" name="img" id="img">
             </div>
             <hr>
 
@@ -70,8 +74,9 @@
                    </div>`
         $(".options").append(opt);
     }
+
     function removeOption(el) {
-        let dom=$(el).parent()
+        let dom = $(el).parent()
         $(dom).remove();
     }
     // remove()消除，append()附加, parent()父母

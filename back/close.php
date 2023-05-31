@@ -8,7 +8,7 @@ $duration = strtotime($subject['close_time']) - strtotime($subject['open_time'])
 
 $new_close = date("Y-m-d H:i:s", strtotime("now") - 1);
 $new_open = $date("Y-m-d H:i:s", strtotime("now") - $duration);
-$sql = "update `topics` set `open_time`='',`close_time`='' where `id`='{$_GET['id']}'";
+$sql="update `topics` set `open_time`='$new_open',`close_time`='$new_close' where `id`='{$_GET['id']}'";
 
 $pdo->exec($sql);
 header("location:../backend.php");

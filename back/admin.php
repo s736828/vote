@@ -39,9 +39,8 @@
                 <?= $row['總計'] ?>
             </div>
             <div class="list-item">
-                <!-- 以下兩個onclick給id傳出去↓ -->
-                <button onclick="location.href='./backend.php?do=edit_vote&id=<?= $row['id']; ?>'">編輯</button>
-                <!-- 不需用a連結也能導入↑， -->
+                <!-- 以下onclick給id傳出去↓, 不需用a連結也能導入 --> 
+                <button onclick="location.href='./backend.php?do=edit_vote&id=<?= $row['id']; ?>'">編輯</button>               
                 <button onclick="location.href='./back/del_vote.php?id=<?= $row['id']; ?>'">刪除</button>
                 <button onclick="location.href='./back/open.php?id=<?= $row['id']; ?>'">立即上線</button>
                 <button onclick="location.href='./back/close.php?id=<?= $row['id']; ?>'">立即結束</button>

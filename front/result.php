@@ -20,7 +20,6 @@ $subject = $pdo->query("select * from `topics` where `id`=$id")->fetch(PDO::FETC
         </div>
             <div class="vote-item"><?=$option['description']?></div>
             <div class="vote-item"><?=$option['total']?></div>
-
         </li>
     <?php
     }
