@@ -1,9 +1,9 @@
 <?php
 $sql = "select * from `logs` where `topic_id`='{$_GET['sub_id']}'";
 $logs = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-$subject=$pdo
-            ->query("select `subject` from `topics` where `id`='{$_GET['sub_id']}'")
-            ->fetchColumn();
+$subject = $pdo
+    ->query("select `subject` from `topics` where `id`='{$_GET['sub_id']}'")
+    ->fetchColumn();
 echo "<pre>";
 print_r($logs);
 echo "</pre>";
@@ -20,7 +20,7 @@ echo "</pre>";
         border: 1px solid #ccc;
     }
 </style>
-<h1><?=$subject;?></h1>
+<h1><?= $subject; ?></h1>
 <table class="vote-items">
     <tr>
         <td>會員</td>
@@ -35,12 +35,16 @@ echo "</pre>";
             $name = "一般訪客";
         }
     ?>
-     <form action="">
-        <tr>
-            <td><?= $log['mem_id'] ?></td>
-            <td><?= $log['vote_time'] ?></td>
-            <td><button>刪除</button></td>
-        </tr>
+        <form action="">
+            <tr>
+                <td><?= $name ?></td>
+                <td><?= $log['vote_time'] ?></td>
+                <td>
+                    <input type="hidden" name="topic_id" value="<?=$log['topic_id']?>">
+                    <input type="hidden" name="id" value="<?=$log['id']?>">
+                    <button type="submit">刪除</button>
+                </td>
+            </tr>
         </form>
     <?php
     }
