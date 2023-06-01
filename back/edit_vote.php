@@ -64,10 +64,7 @@ foreach ($options as $opt) {
         <input type="submit" value="編輯">
     </div>
 </form>
-</main>
-</body>
 
-</html>
 <!-- 上面必須先載入，所以jquery寫在最後面 -->
 <script>
     function addOption() {

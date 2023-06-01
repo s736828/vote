@@ -35,7 +35,7 @@ echo "</pre>";
             $name = "一般訪客";
         }
     ?>
-        <form action="">
+        <form action="../api/del_log.php" method="post">
             <tr>
                 <td><?= $name ?></td>
                 <td><?= $log['vote_time'] ?></td>
