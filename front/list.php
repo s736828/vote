@@ -5,9 +5,10 @@
         <div class="vote-item">功能</div>
     </div>
     <?php
-    $sql = "select * from `topics` where `close_time` >= '".date("Y-m-d H:i:s")."'";
-    // echo $sql;
-    $rows = $pdo->query($sql)->fetchAll();
+    // $sql = "select * from `topics` where `close_time` >= '".date("Y-m-d H:i:s")."'";
+    // $rows = $pdo->query($sql)->fetchAll();
+    $rows=q("select * from `topics` where `close_time` >= '".date("Y-m-d H:i:s")."'");
+    
     foreach ($rows as $idx => $row) {
     ?>
 <li class="vote-subject">

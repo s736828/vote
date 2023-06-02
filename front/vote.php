@@ -5,21 +5,24 @@
  /絕對位置
  */
 // topics資料表查找範圍是id=接傳送的id↓
-$topic = $pdo->query("select * from `topics` where `id`='{$_GET['id']}'")->fetch(PDO::FETCH_ASSOC);
+// $topic = $pdo->query("select * from `topics` where `id`='{$_GET['id']}'")->fetch(PDO::FETCH_ASSOC);
+$topic = find('topics', $_GET['id']);
+
 if ($topic['login'] == 1) {
     if (!isset($_SESSION['login'])) {
         $_SESSION['position'] = "/index.php?do=vote&id={$_GET['id']}";
-        header("location:index.php?do=login&msg=1");
+        to("index.php?do=login&msg=1");
     }
 }
 
 // options資料表查找範圍是subject_id=接傳送的id↓
-$options = $pdo->query("select * from `options` where `subject_id`='{$_GET['id']}'")->fetchAll(PDO::FETCH_ASSOC);
+// $options = $pdo->query("select * from `options` where `subject_id`='{$_GET['id']}'")->fetchAll(PDO::FETCH_ASSOC);
+$options = all('options', ['subject_id' => $_GET['id']]);
 ?>
 <h2><?= $topic['subject'] ?></h2>
 
 <?php
-if(!empty($topic['image'])){
+if (!empty($topic['image'])) {
     echo "<img src='./upload/{$topic['image']}' style='width: 450px; height:300px'>";
 }
 ?>
