@@ -18,7 +18,7 @@ class DB
     protected $pw = "";
     protected $table;
     protected $pdo;
-    protected $query_result;
+    protected $result;
     // 建構式
     function __construct($table)
     {
@@ -42,7 +42,7 @@ class DB
             $sql = $sql . $arg[1];
         }
 
-        $this->query_result = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        $this->result = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $this;
     }
     function find($arg)
@@ -57,8 +57,8 @@ class DB
             $sql .= " `id` = '$arg' ";
         }
         // echo $sql;
-        $this->query_result = $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-        return $this;
+        $this->result = $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return $this->result;
     }
 
     function save($cols)
@@ -72,14 +72,14 @@ class DB
             }
             $sql = "update `$this->table` set  " . join(',', $tmp) . " where `id`='{$cols['id']}'";
             // echo $sql;
-            $this->query_result = $this->pdo->exec($sql);
+            $this->result = $this->pdo->exec($sql);
             return $this;
         } else {
             // insert
             $key = array_keys($cols);
             $sql = "insert into $this->table (`" . join("`,`", $key) . "`)values('" . join("','", $cols) . "')";
             // echo $sql;
-            $this->query_result = $this->pdo->exec($sql);
+            $this->result = $this->pdo->exec($sql);
             return $this;
         }
     }
@@ -95,9 +95,10 @@ class DB
             $sql .= " `id` = '$arg' ";
         }
         // echo $sql;
-        $this->query_result = $this->pdo->exec($sql);
+        $this->result = $this->pdo->exec($sql);
         return $this;
     }
+
     function count(...$arg)
     {
         $sql = "select count(*) from $this->table ";
@@ -114,7 +115,8 @@ class DB
         if (isset($arg[1])) {
             $sql = $sql . $arg[1];
         }
-        $this->query_result = $this->pdo->query($sql)->fetchColumn();
+        $this->result = $this->pdo->query($sql)->fetchColumn();
+       
         return $this;
     }
     // ...arg不定參數
@@ -153,14 +155,14 @@ class DB
             $sql = $sql . $arg[1];
         }
         // echo $sql;
-        $this->query_result = $this->pdo->query($sql)->fetchColumn();
+        $this->result = $this->pdo->query($sql)->fetchColumn();
         return $this;
     }
 
     function dd()
     {
         echo "<pre>";
-        print_r($this->query_result);
+        print_r($this->result);
         echo "</pre>";
     }
 }
@@ -170,6 +172,9 @@ function q($sql){
     $pdo=new PDO($dsn,'root','');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
+function to($url){
+    header("location:".$url);
+}
 
 $Topic=new DB('topics');
 $Option=new DB('options');
@@ -178,14 +183,42 @@ $Member=new DB('members');
 
 // 繼承DB
 class Subject extends DB{
+    // 寫死，為了是只要撈題目就把該項目帶出來
     function __construct(){
-        // 寫死，為了是只要撈題目就把該項目帶出來
         $this->table='topics';
+        $this->pdo = new PDO($this->dsn, $this->user, $this->pw);
     }
-    function options(){
-        $sql="select * from `options` where `subject_id='{$this->query_result['id']}'`";
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    function find($arg)
+    {
+        $sql = "select * from `$this->table`  where ";
 
+        if (is_array($arg)) {
+            foreach ($arg as $key => $value) {
+
+                $tmp[] = "`$key`='$value'";
+            }
+
+            $sql .= join(" && ", $tmp);
+        } else {
+
+            $sql .= " `id` = '$arg' ";
+        }
+
+        //echo $sql;
+        $this->result=$this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+        $topic=new stdClass;
+        foreach($this->result as $col => $value){
+            $topic->$col=$value;
+        }
+
+        $topic->options=$this->options();
+        return $topic;
+    }
+
+    function options(){
+        $sql="select * from `options` where `subject_id='{$this->result['id']}'`";
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

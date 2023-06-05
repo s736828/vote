@@ -3,9 +3,11 @@
 
 // topics資料表查找範圍是id=接傳送的id↓
 // $topic = find('topics', $_GET['id']);
-$topic=$Topic->find($_GET['id']);
+// $topic=$Topic->find($_GET['id']);
+$Subject=new Subject;
+$topic=$Subject->find($_GET['id']);
 
-if ($topic['login'] == 1) {
+if ($topic->login == 1) {
     if (!isset($_SESSION['login'])) {
         $_SESSION['position'] = "/index.php?do=vote&id={$_GET['id']}";
         to("index.php?do=login&msg=1");
@@ -13,13 +15,13 @@ if ($topic['login'] == 1) {
 }
 
 // $options = all('options', ['subject_id' => $_GET['id']]);
-$options=$Option->all(['subject_id' => $_GET['id']]);
+// $options=$Option->all(['subject_id' => $_GET['id']]);
 ?>
-<h2><?= $topic['subject'] ?></h2>
+<h2><?= $topic->subject ?></h2>
 
 <?php
-if (!empty($topic['image'])) {
-    echo "<img src='./upload/{$topic['image']}' style='width: 450px; height:300px'>";
+if (!empty($topic->image)) {
+    echo "<img src='./upload/{$topic->image}' style='width: 450px; height:300px'>";
 }
 ?>
 <form action="./api/vote.php" method="post">
