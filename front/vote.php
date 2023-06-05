@@ -27,9 +27,9 @@ if (!empty($topic->image)) {
 <form action="./api/vote.php" method="post">
     <ul>
         <?php
-        foreach ($options as $idx => $opt) {
+        foreach ($topic->options as $idx => $opt) {
             echo "<li>";
-            switch ($topic['type']) {
+            switch ($topic->type) {
                 case 1:
                     echo "<input type='radio' name='desc' value='{$opt['id']}'>";
                     break;
